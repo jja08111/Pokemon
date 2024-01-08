@@ -2,9 +2,9 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from './screen/home/HomeScreen';
-import { AppRouteParamList } from './route';
+import { AppStackParamList } from './navigation/types';
 
-const RootStack = createStackNavigator<AppRouteParamList>();
+const RootStack = createStackNavigator<AppStackParamList>();
 
 function App(): React.JSX.Element {
   return (
