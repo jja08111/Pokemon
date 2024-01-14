@@ -1,11 +1,11 @@
-import axios from 'axios';
 import PokemonListResponse from '../model/PokemonListResponse';
+import PokeApi from '.';
 
 const PAGE_SIZE = 30;
 
 // eslint-disable-next-line import/prefer-default-export
 export const fetchPokemonList = async (param: { page: number }) => {
-  const response = await axios.get('https://pokeapi.co/api/v2/pokemon', {
+  const response = await PokeApi.get('/pokemon', {
     params: {
       offset: param.page * PAGE_SIZE,
       limit: PAGE_SIZE,
