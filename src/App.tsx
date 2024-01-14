@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import PokemonListScreen from './screen/PokemonList';
+import PokemonListScreen from './screen/PokemonListScreen';
 import { AppStackParamList } from './navigation/types';
 
 const RootStack = createStackNavigator<AppStackParamList>();
