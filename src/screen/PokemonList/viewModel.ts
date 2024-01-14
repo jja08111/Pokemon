@@ -3,12 +3,18 @@ import Pokemon from '../../model/Pokemon';
 import usePokemonListQuery from '../../query/usePokemonListQuery';
 
 interface PokemonListUiState {
-  pokemons?: Pokemon[];
+  pokemons: Pokemon[];
+  error?: unknown;
+  isLoading: boolean;
 }
 
 const usePokemonListViewModel = (): PokemonListUiState => {
   const page = 0;
-  const { data: pokemonListData } = usePokemonListQuery(page);
+  const {
+    data: pokemonListData,
+    isLoading: isPokemonListLoading,
+    error: pokemonListError,
+  } = usePokemonListQuery(page);
 
   const convertedPokemonList = useMemo(
     () => pokemonListData?.results?.map((dto) => Pokemon.from(dto)),
@@ -16,7 +22,9 @@ const usePokemonListViewModel = (): PokemonListUiState => {
   );
 
   return {
-    pokemons: convertedPokemonList,
+    pokemons: convertedPokemonList ?? [],
+    error: pokemonListError,
+    isLoading: isPokemonListLoading,
   };
 };
 
