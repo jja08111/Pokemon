@@ -12,7 +12,7 @@ export default class Pokemon {
 
   get imageUrl(): string {
     const splittedUrl = this.url.split('/');
-    const index = splittedUrl[splittedUrl.length - 1];
+    const index = splittedUrl[splittedUrl.length - 2];
     return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index}.png`;
   }
 
