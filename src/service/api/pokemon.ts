@@ -1,9 +1,9 @@
 import PokemonListResponse from '../model/PokemonListResponse';
 import PokeApi from '.';
+import PokemonDetailResponse from '../model/PokemonDetailResponse';
 
 const PAGE_SIZE = 30;
 
-// eslint-disable-next-line import/prefer-default-export
 export const fetchPokemonList = async (page: number) => {
   const response = await PokeApi.get('/pokemon', {
     params: {
@@ -12,4 +12,9 @@ export const fetchPokemonList = async (page: number) => {
     },
   });
   return PokemonListResponse.parse(response.data);
+};
+
+export const fetchPokemonDetail = async (pokemonName: string) => {
+  const response = await PokeApi.get(`/pokemon/${pokemonName}`);
+  return PokemonDetailResponse.parse(response.data);
 };
