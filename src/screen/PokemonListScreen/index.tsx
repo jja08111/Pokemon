@@ -8,10 +8,13 @@ import React, {
 import usePokemonListViewModel from './viewModel';
 import PokemonCard from '../../component/PokemonCard';
 import style, { CardMargin } from './style';
+import { AppStackScreenProps } from '../../navigation/types';
 
 const NumColumns = 2;
 
-export default function PokemonListScreen() {
+type Props = AppStackScreenProps<'PokemonList'>;
+
+export default function PokemonListScreen({ navigation }: Props) {
   const { pokemons, isLoading, error, fetchNextPokemons } =
     usePokemonListViewModel();
   const { width: windowWidth } = Dimensions.get('window');
@@ -42,6 +45,9 @@ export default function PokemonListScreen() {
               key={pokemon.name}
               style={{ width: (windowWidth - CardMargin * 3) / NumColumns }}
               pokemon={pokemon}
+              onPress={() =>
+                navigation.navigate('PokemonDetail', { name: pokemon.name })
+              }
             />
           );
         }}
