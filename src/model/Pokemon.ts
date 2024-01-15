@@ -5,7 +5,7 @@ export default class Pokemon {
 
   readonly url: string;
 
-  constructor({ name, url }: { name: string; url: string }) {
+  private constructor({ name, url }: { name: string; url: string }) {
     this.name = name;
     this.url = url;
   }
