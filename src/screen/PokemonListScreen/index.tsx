@@ -12,7 +12,8 @@ import style, { CardMargin } from './style';
 const NumColumns = 2;
 
 export default function PokemonListScreen() {
-  const { pokemons, isLoading, error } = usePokemonListViewModel();
+  const { pokemons, isLoading, error, fetchNextPokemons } =
+    usePokemonListViewModel();
   const { width: windowWidth } = Dimensions.get('window');
 
   if (error) {
@@ -28,7 +29,10 @@ export default function PokemonListScreen() {
       <FlatList
         style={style.pokemonList}
         data={pokemons}
+        onEndReached={fetchNextPokemons}
         numColumns={NumColumns}
+        onEndReachedThreshold={0.5}
+        keyExtractor={(pokemon) => pokemon.name}
         columnWrapperStyle={style.pokemonListColumnWrapper}
         contentContainerStyle={style.pokemonListContentContainer}
         renderItem={(renderItem) => {

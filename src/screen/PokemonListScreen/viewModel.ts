@@ -6,22 +6,26 @@ interface PokemonListUiState {
   pokemons: Pokemon[];
   error?: unknown;
   isLoading: boolean;
+  fetchNextPokemons: () => void;
 }
 
 const usePokemonListViewModel = (): PokemonListUiState => {
-  const page = 0;
   const {
     data: pokemonListData,
     isLoading: isPokemonListLoading,
     error: pokemonListError,
-  } = usePokemonListQuery(page);
+    fetchNextPage: fetchNextPokemons,
+  } = usePokemonListQuery();
 
-  const convertedPokemonList = useMemo(
-    () => pokemonListData?.results?.map((dto) => Pokemon.from(dto)),
-    [pokemonListData],
-  );
+  const convertedPokemonList = useMemo(() => {
+    const pages = pokemonListData?.pages;
+    return pages?.flatMap((page) => {
+      return page.results.map((dto) => Pokemon.from(dto));
+    });
+  }, [pokemonListData]);
 
   return {
+    fetchNextPokemons,
     pokemons: convertedPokemonList ?? [],
     error: pokemonListError,
     isLoading: isPokemonListLoading,

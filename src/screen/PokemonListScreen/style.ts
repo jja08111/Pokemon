@@ -12,7 +12,7 @@ export default StyleSheet.create({
   },
   pokemonListContentContainer: {
     gap: CardMargin,
-    paddingBottom: 320,
+    paddingBottom: 40,
   } as FlexStyle,
   pokemonListColumnWrapper: {
     justifyContent: 'space-between',

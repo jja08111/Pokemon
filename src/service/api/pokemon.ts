@@ -4,10 +4,10 @@ import PokeApi from '.';
 const PAGE_SIZE = 30;
 
 // eslint-disable-next-line import/prefer-default-export
-export const fetchPokemonList = async (param: { page: number }) => {
+export const fetchPokemonList = async (page: number) => {
   const response = await PokeApi.get('/pokemon', {
     params: {
-      offset: param.page * PAGE_SIZE,
+      offset: page * PAGE_SIZE,
       limit: PAGE_SIZE,
     },
   });
