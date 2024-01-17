@@ -45,9 +45,7 @@ export default function PokemonListScreen({ navigation }: Props) {
               key={pokemon.name}
               style={{ width: (windowWidth - CardMargin * 3) / NumColumns }}
               pokemon={pokemon}
-              onPress={() =>
-                navigation.navigate('PokemonDetail', { name: pokemon.name })
-              }
+              onPress={() => navigation.navigate('PokemonDetail', { pokemon })}
             />
           );
         }}

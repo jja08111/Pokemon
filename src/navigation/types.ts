@@ -1,9 +1,10 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import Pokemon from '../model/Pokemon';
 
 export type AppStackParamList = {
   PokemonList: undefined;
   PokemonDetail: {
-    name: string;
+    pokemon: Pokemon;
   };
 };
 
